@@ -7,21 +7,24 @@ const port = 3000
 
 // const structTime
 const averagePrices = [];
+const timeStampUnix = [];
 const averageCalculate = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
 let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
 let data = await response.json();
 averagePrices.push(data.fast)
+timeStampUnix.push(Date.now())
 console.log(averagePrices);
-console.log(averageCalculate(averagePrices));
-console.log(Date.now())
+console.log(timeStampUnix);
+console.log(averageCalculate(averagePrices) );
 
 setInterval(async function(){
   response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
   data = await response.json();
   averagePrices.push(data.fast)
+  timeStampUnix.push(Date.now())
   console.log(averagePrices);
-  console.log(averageCalculate(averagePrices));
-  console.log(Date.now())
+  console.log(timeStampUnix);
+  console.log(averageCalculate(averagePrices) );
 
 }, 15000); //CHECK BLOCKTIME EVERY 15 SECONDS FOR MORE ACCURACY AGAINST MEV.
 

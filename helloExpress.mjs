@@ -1,16 +1,21 @@
 //VIEW AT :http://localhost:3000/
-//MAKE SURE YOU HAVE THE LATEST VERSION OF NODEJS AND HAVE THIS AS AN MJS FILE
 import fetch from 'node-fetch';
 import express from 'express'
 const app = express()
 const port = 3000
 
-const response = await fetch('https://api.github.com/users/github');
-const data = await response.json();
-console.log(data);
+  let response = await fetch('https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam');
+  let data = await response.json();
+  console.log(data);
+  console.log(data.year);
 
 app.get('/', (req, res) => { //Default page.
-  res.send(data)
+  try {
+    res.send(data.year+"")
+  }
+  catch{
+    res.send("error")
+  }
 })
 
 app.get('/hello', (req, res) => { //Another page.

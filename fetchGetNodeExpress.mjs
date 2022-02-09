@@ -18,12 +18,8 @@ app.get('/', (req, res) => { //Default page.
   }
 })
 
-app.get('/hello', (req, res) => { //Another page.
-  res.send('Hello.')
-})
-
 app.get('/gas', (req, res) => { //Another page.
-  res.send("Average: " + data.average + " Fast: " + data.fast + " Slow: " + data.safeLow + " Block: " + data.blockNum)
+  res.send(" fast: " + data.fast + " average: " + data.average + " safeLow: " + data.safeLow + " blockNum: " + data.blockNum)
 })
 
 app.listen(port, () => {

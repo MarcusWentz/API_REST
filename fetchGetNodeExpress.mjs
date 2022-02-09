@@ -22,7 +22,7 @@ app.get('/gas', (req, res) => {
   try {
     res.send(" fast: " + data.fastest + //fast -> fastest, average -> fast (don't get confused by
              " average: " + data.fast + //"average" field that's the average gas price between fastest, fast, and
-             " safeLow: " + data.safeLow + //safeLow), low -> safeLow
+             " low: " + data.safeLow + //safeLow), low -> safeLow
              " blockNum: " + data.blockNum)
   }
   catch{

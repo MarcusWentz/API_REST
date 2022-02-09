@@ -4,10 +4,17 @@ import express from 'express'
 const app = express()
 const port = 3000
 
-  let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
-  let data = await response.json();
+let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
+let data = await response.json();
+console.log(data);
+console.log(data.fast);
+
+setInterval(async function(){
+  response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
+  data = await response.json();
   console.log(data);
   console.log(data.fast);
+}, 15000);
 
 app.get('/', (req, res) => { //Default page.
   try {

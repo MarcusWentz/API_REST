@@ -7,7 +7,7 @@ const port = 3000
   let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
   let data = await response.json();
   console.log(data);
-  console.log(data.average);
+  console.log(data.fast);
 
 app.get('/', (req, res) => { //Default page.
   try {
@@ -18,8 +18,16 @@ app.get('/', (req, res) => { //Default page.
   }
 })
 
-app.get('/gas', (req, res) => { //Another page.
-  res.send(" fast: " + data.fast + " average: " + data.average + " safeLow: " + data.safeLow + " blockNum: " + data.blockNum)
+app.get('/gas', (req, res) => {
+  try {
+    res.send(" fast: " + data.fastest + //fast -> fastest, average -> fast (don't get confused by
+             " average: " + data.fast + //"average" field that's the average gas price between fastest, fast, and
+             " safeLow: " + data.safeLow + //safeLow), low -> safeLow
+             " blockNum: " + data.blockNum)
+  }
+  catch{
+    res.send("error")
+  }
 })
 
 app.listen(port, () => {

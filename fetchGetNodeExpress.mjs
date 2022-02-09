@@ -1,4 +1,5 @@
 //VIEW AT :http://localhost:3000/
+//Node v16.14.0
 import fetch from 'node-fetch';
 import express from 'express'
 const app = express()
@@ -14,7 +15,7 @@ setInterval(async function(){
   data = await response.json();
   console.log(data);
   console.log(data.fast);
-}, 15000);
+}, 15000); //CHECK BLOCKTIME EVERY 15 SECONDS FOR MORE ACCURACY AGAINST MEV.
 
 app.get('/', (req, res) => { //Default page.
   try {

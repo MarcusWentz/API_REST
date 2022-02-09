@@ -5,23 +5,23 @@ import express from 'express'
 const app = express()
 const port = 3000
 
-const averagePrice = [];
+// const structTime
+const averagePrices = [];
+const averageCalculate = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
 let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
 let data = await response.json();
-console.log(data);
-// console.log(data.fast);
-averagePrice.push(data.fast)
-console.log(averagePrice);
-
+averagePrices.push(data.fast)
+console.log(averagePrices);
+console.log(averageCalculate(averagePrices));
+console.log(Date.now())
 
 setInterval(async function(){
   response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
   data = await response.json();
-  console.log(data);
-  // console.log(data.fast);
-  averagePrice.push(data.fast)
-  console.log(averagePrice);
-
+  averagePrices.push(data.fast)
+  console.log(averagePrices);
+  console.log(averageCalculate(averagePrices));
+  console.log(Date.now())
 
 }, 15000); //CHECK BLOCKTIME EVERY 15 SECONDS FOR MORE ACCURACY AGAINST MEV.
 

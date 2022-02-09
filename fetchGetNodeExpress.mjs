@@ -5,16 +5,24 @@ import express from 'express'
 const app = express()
 const port = 3000
 
+const averagePrice = [];
 let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
 let data = await response.json();
 console.log(data);
-console.log(data.fast);
+// console.log(data.fast);
+averagePrice.push(data.fast)
+console.log(averagePrice);
+
 
 setInterval(async function(){
   response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
   data = await response.json();
   console.log(data);
-  console.log(data.fast);
+  // console.log(data.fast);
+  averagePrice.push(data.fast)
+  console.log(averagePrice);
+
+
 }, 15000); //CHECK BLOCKTIME EVERY 15 SECONDS FOR MORE ACCURACY AGAINST MEV.
 
 app.get('/', (req, res) => { //Default page.

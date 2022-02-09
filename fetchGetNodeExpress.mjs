@@ -4,14 +4,14 @@ import express from 'express'
 const app = express()
 const port = 3000
 
-  let response = await fetch('https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam');
+  let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
   let data = await response.json();
   console.log(data);
-  console.log(data.year);
+  console.log(data.average);
 
 app.get('/', (req, res) => { //Default page.
   try {
-    res.send(data.year+"")
+    res.send(data)
   }
   catch{
     res.send("error")
@@ -20,6 +20,10 @@ app.get('/', (req, res) => { //Default page.
 
 app.get('/hello', (req, res) => { //Another page.
   res.send('Hello.')
+})
+
+app.get('/gas', (req, res) => { //Another page.
+  res.send("Average: " + data.average + " Fast: " + data.fast + " Slow: " + data.safeLow + " Block: " + data.blockNum)
 })
 
 app.listen(port, () => {

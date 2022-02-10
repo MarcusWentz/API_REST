@@ -15,6 +15,8 @@ averagePrices.push(data.fast)
 timeStampUnix.push(Date.now()-(Date.now()%20)) //Make sure value is only divisible by 20 perfectly to reduce storage size.
 console.log(averagePrices);
 console.log(timeStampUnix);
+console.log("MinTime: " + timeStampUnix[0]);
+console.log("MaxTime: " + timeStampUnix[timeStampUnix.length-1]);
 console.log(averageCalculate(averagePrices) );
 
 setInterval(async function fetchLatestGasData(){
@@ -22,6 +24,8 @@ setInterval(async function fetchLatestGasData(){
   data = await response.json();
   averagePrices.push(data.fast)
   timeStampUnix.push(Date.now()-(Date.now()%20))
+  console.log("MinTime: " + timeStampUnix[0]);
+  console.log("MaxTime: " + timeStampUnix[timeStampUnix.length-1]);
   console.log(averagePrices);
   console.log(timeStampUnix);
   console.log(averageCalculate(averagePrices) );
@@ -51,13 +55,13 @@ app.get('/gas', (req, res) => {
 
 app.get('/average', (req, res) => {
   try {
-    if(Date.now() <= Date.now() && Date.now()+20 >= Date.now()+20 ) {
-
-    res.send(" averageGas: "      + averageCalculate(averagePrices) +
-             " startTimeUnix: "   + timeStampUnix[0]                +
-             " endTimeUnix: "     + timeStampUnix[timeStampUnix.length-1]         )
+      if(Date.now() <= Date.now() && Date.now()+20 >= Date.now()+20 ) {
+        res.send(" averageGas: "      + averageCalculate(averagePrices) +
+                 " startTimeUnix: "   + timeStampUnix[0]                +
+                 " endTimeUnix: "     + timeStampUnix[timeStampUnix.length-1]         )
       } else {
-        res.send("Min and max bounds out of range.")
+        res.send("Minimum time filter is "      + timeStampUnix[0] +
+                 " and maximum time filter is " + timeStampUnix[timeStampUnix.length-1])
       }
   }
   catch{

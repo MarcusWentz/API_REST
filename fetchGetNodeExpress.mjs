@@ -51,9 +51,14 @@ app.get('/gas', (req, res) => {
 
 app.get('/average', (req, res) => {
   try {
+    if(Date.now() <= Date.now() && Date.now()+20 >= Date.now()+20 ) {
+
     res.send(" averageGas: "      + averageCalculate(averagePrices) +
              " startTimeUnix: "   + timeStampUnix[0]                +
              " endTimeUnix: "     + timeStampUnix[timeStampUnix.length-1]         )
+      } else {
+        res.send("Min and max bounds out of range.")
+      }
   }
   catch{
     res.send("error")

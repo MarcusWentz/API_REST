@@ -17,7 +17,7 @@ console.log(averagePrices);
 console.log(timeStampUnix);
 console.log(averageCalculate(averagePrices) );
 
-setInterval(async function(){
+setInterval(async function fetchLatestGasData(){
   response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
   data = await response.json();
   averagePrices.push(data.fast)

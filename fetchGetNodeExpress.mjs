@@ -11,10 +11,8 @@ const timeStampUnix = [];
 const averageCalculate = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
 let response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
 let data = await response.json();
-for(let i = 0 ; i < 20; i++) {
-  averagePrices.push(data.fast)
-  timeStampUnix.push(Date.now()+i)
-}
+averagePrices.push(data.fast)
+timeStampUnix.push(Date.now()-(Date.now()%20)) //Make sure value is only divisible by 20 perfectly to reduce storage size.
 console.log(averagePrices);
 console.log(timeStampUnix);
 console.log(averageCalculate(averagePrices) );
@@ -22,10 +20,8 @@ console.log(averageCalculate(averagePrices) );
 setInterval(async function(){
   response = await fetch('https://ethgasstation.info/api/ethgasAPI.json');
   data = await response.json();
-  for(let i = 0 ; i < 20; i++) {
-    averagePrices.push(data.fast)
-    timeStampUnix.push(Date.now()+i)
-  }
+  averagePrices.push(data.fast)
+  timeStampUnix.push(Date.now()-(Date.now()%20))
   console.log(averagePrices);
   console.log(timeStampUnix);
   console.log(averageCalculate(averagePrices) );

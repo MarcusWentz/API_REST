@@ -39,9 +39,9 @@ app.get('/', (req, res) => { //Default page.
 
 app.get('/gas', (req, res) => {
   try {
-    res.send(" fast: " + data.fastest + //fast -> fastest, average -> fast (don't get confused by
-             " average: " + data.fast + //"average" field that's the average gas price between fastest, fast, and
-             " low: " + data.safeLow + //safeLow), low -> safeLow
+    res.send(" fast: "     + data.fastest + //fast -> fastest, average -> fast (don't get confused by
+             " average: "  + data.fast + //"average" field that's the average gas price between fastest, fast, and
+             " low: "      + data.safeLow + //safeLow), low -> safeLow
              " blockNum: " + data.blockNum)
   }
   catch{
@@ -52,7 +52,7 @@ app.get('/gas', (req, res) => {
 app.get('/average', (req, res) => {
   try {
     res.send(" averageGas: "      + averageCalculate(averagePrices) +
-             " startTimeUnix: "   +  timeStampUnix[0]               +
+             " startTimeUnix: "   + timeStampUnix[0]                +
              " endTimeUnix: "     + timeStampUnix[timeStampUnix.length-1]         )
   }
   catch{

@@ -49,6 +49,17 @@ app.get('/gas', (req, res) => {
   }
 })
 
+app.get('/average', (req, res) => {
+  try {
+    res.send(" averageGas: "      + averageCalculate(averagePrices) +
+             " startTimeUnix: "   +  timeStampUnix[0]               +
+             " endTimeUnix: "     + timeStampUnix[timeStampUnix.length-1]         )
+  }
+  catch{
+    res.send("error")
+  }
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

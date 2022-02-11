@@ -55,13 +55,15 @@ app.get('/gas', (req, res) => {
 
 app.get('/average', (req, res) => {
   try {
-      if(Date.now() <= Date.now() && Date.now()+20 >= Date.now()+20 ) {
-        res.send(" averageGas: "      + averageCalculate(averagePrices) +
-                 " startTimeUnix: "   + timeStampUnix[0]                +
-                 " endTimeUnix: "     + timeStampUnix[timeStampUnix.length-1]         )
+      if(timeStampUnix[0] <= Date.now() ) {
+        res.send(" averageGas: "      + averageCalculate(averagePrices)        +
+                 " startTimeUnix: "   + timeStampUnix[0]                       +
+                 " endTimeUnix: "     + timeStampUnix[timeStampUnix.length-1]  +
+                 " currentTimeUnix: " +  Date.now()                            )
       } else {
-        res.send("Minimum time filter is "      + timeStampUnix[0] +
-                 " and maximum time filter is " + timeStampUnix[timeStampUnix.length-1])
+        res.send(" Minimum time filter is "     + timeStampUnix[0]                       +
+                 " and maximum time filter is " + timeStampUnix[timeStampUnix.length-1]  +
+                 " currentTimeUnix: "           + Date.now()                             )
       }
   }
   catch{

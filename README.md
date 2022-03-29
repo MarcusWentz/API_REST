@@ -1,6 +1,6 @@
 # API_REST
 
-REST API using node.js [work in progress with Golang].
+REST API using node.js and Golang. 
 
 Dependicies: 
 
